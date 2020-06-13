@@ -21,7 +21,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:8000/api/todos?format=json').then(res=>
+    axios.get('https://still-mesa-20147.herokuapp.com/api/todos/').then(res=>
     
     this.setState({todos:res.data}));
 
@@ -60,12 +60,11 @@ class App extends Component {
 
       axios.put(
        
-        `http://localhost:8000/api/todos/${todoitem.id}/`,todoitem
+        `https://still-mesa-20147.herokuapp.com/api/todos/${todoitem.id}/`,todoitem
         
         
         ).then(res=>console.log(res.data))
       
-
 
 
     
@@ -79,7 +78,7 @@ class App extends Component {
     axios.delete(
       
       
-      `http://127.0.0.1:8000/api/todos/${id}`
+      `https://still-mesa-20147.herokuapp.com/api/todos/${id}`
       
       
       )
@@ -103,7 +102,7 @@ class App extends Component {
 
 
   addTodo= (title)=>{
-    axios.post('http://127.0.1:8000/api/todos/',{
+    axios.post('https://still-mesa-20147.herokuapp.com/api/todos/',{
     title:title,
   
     iscompleted:false
