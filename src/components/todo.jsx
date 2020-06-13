@@ -15,7 +15,7 @@ class Todos extends Component{
         
 
         
-        <div  className='col-lg-6' key={todo.id} >
+        <div  className='col-lg-4' key={todo.id} >
         <div className="alert alert-secondary" style={{minHeight:200}}>
                <TodoItem key={todo.id} todoitem={todo}
                 markCompleted={this.props.markCompleted}
