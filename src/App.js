@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Todos from './components/Todo';
+import Todos from './components/todo';
 import './App.css';
 import AddTodo from './components/AddTodo';
 
@@ -21,32 +21,32 @@ class App extends Component {
   }
 
   componentDidMount(){
-    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10').then(res=>this.setState({todos:res.data}));
+    axios.get('http://localhost:8000/api/todos?format=json').then(res=>
+    
+    this.setState({todos:res.data}));
 
+    
 
 
 
   }
 
-  markCompleted =(id) =>{
+  markCompleted =(todoitem) =>{
+
+
     
+
+
+     
       this.setState({todos: this.state.todos.map(todo =>{
 
 
-        if(todo.id === id){
+        if(todo.id === todoitem.id){
 
-           todo.completed=!todo.completed
+           todo.iscompleted=!todo.iscompleted
 
 
         }
-
-
-
-
-
-
-
-
 
 
       
@@ -54,7 +54,18 @@ class App extends Component {
 
       })
 
+
       });
+      
+
+      axios.put(
+       
+        `http://localhost:8000/api/todos/${todoitem.id}/`,todoitem
+        
+        
+        ).then(res=>console.log(res.data))
+      
+
 
 
     
@@ -65,36 +76,37 @@ class App extends Component {
 
   delTodo =(id)=> {
 
-    axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
-    .then(res=>this.setState({
-      todos:[...this.state.todos.filter(todo=>todo.id!==id)]
-    
-    },
-  
-
-    
-    )
-    
-    
-    );
-
-
-
-
-
-
-
-
-
-
+    axios.delete(
+      
+      
+      `http://127.0.0.1:8000/api/todos/${id}`
+      
+      
+      )
+    .then(res=>this.setState({todos:[...this.state.todos.filter(todo=>todo.id!==id)]}))
 
 
   }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   addTodo= (title)=>{
-    axios.post('https://jsonplaceholder.typicode.com/todos',{
+    axios.post('http://127.0.1:8000/api/todos/',{
     title:title,
-    completed:false
+  
+    iscompleted:false
 
     }).
     then(res=> this.setState({todos:[...this.state.todos,res.data]})
@@ -115,13 +127,17 @@ class App extends Component {
                 <Header/>
 
         <div className="container">
+        
         <AddTodo addtodo={this.addTodo}/>
+        <div className="row">
         <Todos todos={this.state.todos}
         markCompleted={this.markCompleted}
 
         delTodo={this.delTodo}
         
         />
+        </div>
+        
         
 
       </div>

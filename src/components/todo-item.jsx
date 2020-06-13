@@ -7,28 +7,19 @@ class TodoItem extends Component{
     getStyle =() => {
 
         return {
-            background:'grey',
-            padding:'10px',
+            
+            marginBottom:40,
 
-            borderBottom:'1px solid #ccc',
-            textDecoration:this.props.todoitem.completed ?
-             'line-through' : 'none'
+            
+
+            
+            textDecoration:this.props.todoitem.iscompleted ?
+             'line-through' : 'none',
+             background:'white',
+             padding:10,
         }
 
-       const btnStyle={
-
-    background:'red',
-    color:'blue',
-    padding:'5px 9px',
-
-    borderRadius:'50%',
-    float:'right',
-
-
-
-
-
-}
+      
        }
 
        
@@ -39,41 +30,51 @@ class TodoItem extends Component{
 
     render(){
         const { id,title }=this.props.todoitem;
-        const btnStyle={
-
-            background:'red',
-            color:'blue',
-            padding:'5px 9px',
-        
-            borderRadius:'50%',
-            float:'right',
-        
-        
-        
-        
-        
-        }
-        
+      
         
         
 
       return (
-          <div style={this.getStyle()}>
+          <div  className="row">
+        <div className="col-12" style={this.getStyle()}>
 
+                <p>Todo:{title}</p>
+
+        
+            </div>
+            <div className="col-6" >
+
+
+            <button type="button" onClick={()=>this.props.markCompleted(this.props.todoitem)}
+
+              className="badge badge-info form-control">Check
               
+              
+              </button>
+              </div>
+            <div className="col-6">
 
-              <p>
 
-              <input type="checkbox" onChange={this.props.markCompleted.bind(this,id)}/>
+            <button type="button" onClick={()=>this.props.delTodo(id)}
 
-
-                  {title}
-
-              <button onClick={()=>this.props.delTodo(id)}
+              className="badge badge-danger form-control"
               
               
-              style={btnStyle}>x</button>
-               </p>
+              >
+                  delete
+              </button>
+                    
+
+            
+
+
+
+             
+              </div>
+              
+        
+        
+               
         
         </div>
 
@@ -83,6 +84,7 @@ class TodoItem extends Component{
 
     }
 
+              
     
   
 

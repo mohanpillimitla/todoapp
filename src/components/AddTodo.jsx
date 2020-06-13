@@ -23,28 +23,33 @@ class  AddTodo extends Component{
   render(){
 
     return (
+      <div className="alert alert-info" style={{marginBotton:40}}>
        <form onSubmit={this.onSubmit}
        style={{display:'flex'}}>
-           <input type="text"
+      
+        
+           <input type="text" className="form-control"
            value={this.state.title}
            onChange={this.onChange} name="title" 
            
-           style={{flex:'10'}}
+           style={{flex:'6'}}
 
         
            
            placeholder='ADD Todo..'/>
 
 
-           <input type="submit" 
+           <input type="submit" className="form-control"
 
            style={{flex:'1'}}
            
            
            value="submit"/>
+        
 
 
        </form>
+       </div>
 
 
     )
